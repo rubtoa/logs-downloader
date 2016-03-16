@@ -243,7 +243,7 @@ class LogsDownloader:
     """
     def decrypt_file(self, file_content, filename):
         # if the file is not encrypted - the "key" value in the file header is '-1'
-        file_encryption_key = file_content.find("key:")
+        file_encryption_key = file_content.find('\nkey:',0,file_content.find('|==|\n'))
         if file_encryption_key == -1:
             # get the compressed content
             compressed_file_content = file_content.split("|==|\n")[1]
